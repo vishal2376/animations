@@ -11,7 +11,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             AnimationsTheme {
 //                FlipAnimation()
-                CardSlideAnimation()
+//                CardSlideAnimation()
+                ReflectionAnimation()
             }
         }
     }
