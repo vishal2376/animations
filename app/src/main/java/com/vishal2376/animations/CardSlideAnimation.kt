@@ -38,11 +38,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.vishal2376.animations.common.Place
 
-data class Place(
-    val name: String,
-    val resId: Int
-)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
