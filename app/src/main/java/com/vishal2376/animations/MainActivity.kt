@@ -12,7 +12,8 @@ class MainActivity : ComponentActivity() {
             AnimationsTheme {
 //                FlipAnimation()
 //                CardSlideAnimation()
-                ReflectionAnimation()
+//                ReflectionAnimation()
+                SweepLineAnimation()
             }
         }
     }
