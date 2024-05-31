@@ -1,4 +1,4 @@
-package com.vishal2376.animations
+package com.vishal2376.animations.presentation.day2
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.animateFloatAsState
@@ -38,7 +38,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.vishal2376.animations.common.Place
+import com.vishal2376.animations.R
+import com.vishal2376.animations.presentation.common.Place
 
 
 @OptIn(ExperimentalFoundationApi::class)

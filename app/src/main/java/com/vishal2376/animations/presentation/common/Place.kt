@@ -1,4 +1,4 @@
-package com.vishal2376.animations.common
+package com.vishal2376.animations.presentation.common
 
 data class Place(
     val name: String,

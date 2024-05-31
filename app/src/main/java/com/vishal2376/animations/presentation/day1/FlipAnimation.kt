@@ -1,4 +1,4 @@
-package com.vishal2376.animations
+package com.vishal2376.animations.presentation.day1
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.EaseInOut
