@@ -11,7 +11,7 @@ import com.vishal2376.animations.presentation.day1.FlipAnimation
 import com.vishal2376.animations.presentation.day2.CardSlideAnimation
 import com.vishal2376.animations.presentation.day3.ReflectionAnimation
 import com.vishal2376.animations.presentation.day4.SweepLineAnimation
-import com.vishal2376.animations.presentation.day5.CarouselSliderAnimation
+import com.vishal2376.animations.presentation.day5.CircularRevealAnimation
 import com.vishal2376.animations.ui.theme.AnimationsTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
 					}
 
 					composable("day5") {
-						CarouselSliderAnimation()
+						CircularRevealAnimation()
 					}
 				}
 			}
