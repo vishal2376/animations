@@ -31,55 +31,55 @@ import androidx.compose.ui.unit.dp
 @Preview
 @Composable
 fun FlipAnimation() {
-    var isCardFlipped by remember { mutableStateOf(false) }
-    val animDuration = 900
-    val zAxisDistance = 10f //distance between camera and Card
+	var isCardFlipped by remember { mutableStateOf(false) }
+	val animDuration = 900
+	val zAxisDistance = 10f //distance between camera and Card
 
-    val frontColor by animateColorAsState(
-        targetValue = if (isCardFlipped) Color(0xFF789FFF) else Color(0xFF282A31),
-        animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
-        label = ""
-    )
+	val frontColor by animateColorAsState(
+		targetValue = if (isCardFlipped) Color(0xFF789FFF) else Color(0xFF282A31),
+		animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
+		label = ""
+	)
 
-    // rotate Y-axis with animation
-    val rotateCardY by animateFloatAsState(
-        targetValue = if (isCardFlipped) 180f else 0f,
-        animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
-        label = ""
-    )
+	// rotate Y-axis with animation
+	val rotateCardY by animateFloatAsState(
+		targetValue = if (isCardFlipped) 180f else 0f,
+		animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
+		label = ""
+	)
 
-    // text animation
-    val textAlpha by animateFloatAsState(
-        targetValue = if (isCardFlipped) 0f else 1f,
-        tween(durationMillis = 1500),
-        label = ""
-    )
+	// text animation
+	val textAlpha by animateFloatAsState(
+		targetValue = if (isCardFlipped) 0f else 1f,
+		tween(durationMillis = 1500),
+		label = ""
+	)
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .size(200.dp, 300.dp)
-                .graphicsLayer {
-                    rotationY = rotateCardY
-                    cameraDistance = zAxisDistance
-                }
-                .clip(RoundedCornerShape(24.dp))
-                .clickable { isCardFlipped = !isCardFlipped }
-                .background(frontColor)
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-        Text(
-            modifier = Modifier.graphicsLayer {
-                alpha = if (isCardFlipped) 1f - textAlpha else textAlpha
-            },
-            text = if (isCardFlipped) "Reveal" else "Hide",
-            color = Color.Black,
-        )
-    }
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.background(Color.White),
+		verticalArrangement = Arrangement.Center,
+		horizontalAlignment = Alignment.CenterHorizontally
+	) {
+		Box(
+			modifier = Modifier
+				.size(200.dp, 300.dp)
+				.graphicsLayer {
+					rotationY = rotateCardY
+					cameraDistance = zAxisDistance
+				}
+				.clip(RoundedCornerShape(24.dp))
+				.clickable { isCardFlipped = !isCardFlipped }
+				.background(frontColor)
+		)
+		Spacer(modifier = Modifier.height(32.dp))
+		Text(
+			modifier = Modifier.graphicsLayer {
+				alpha = if (isCardFlipped) 1f - textAlpha else textAlpha
+			},
+			text = if (isCardFlipped) "Reveal" else "Hide",
+			color = Color.Black,
+		)
+	}
 }

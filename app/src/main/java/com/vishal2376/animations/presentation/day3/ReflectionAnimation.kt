@@ -46,135 +46,135 @@ import com.vishal2376.animations.presentation.common.Place
 fun ReflectionAnimation() {
 
 
-    val places = listOf(
-        Place("India", R.drawable.img1),
-        Place("Italy", R.drawable.img2),
-        Place("Turkey", R.drawable.img3),
-        Place("Spain", R.drawable.img4),
-        Place("Germany", R.drawable.img5),
-    )
+	val places = listOf(
+		Place("India", R.drawable.img1),
+		Place("Italy", R.drawable.img2),
+		Place("Turkey", R.drawable.img3),
+		Place("Spain", R.drawable.img4),
+		Place("Germany", R.drawable.img5),
+	)
 
-    val pager = rememberPagerState(
-        initialPage = 0,
-        initialPageOffsetFraction = 0f,
-        pageCount = { places.size }
-    )
+	val pager = rememberPagerState(
+		initialPage = 0,
+		initialPageOffsetFraction = 0f,
+		pageCount = { places.size }
+	)
 
-    val bgColor by animateColorAsState(
-        animationSpec = tween(500),
-        targetValue = if (pager.currentPage % 2 == 0)
-            Color(0xFFE2E7FF)
-        else
-            Color(0xFF090D1F),
-        label = ""
-    )
-    val textColor by animateColorAsState(
-        animationSpec = tween(500),
-        targetValue = if (pager.currentPage % 2 == 0)
-            Color.Black
-        else
-            Color.White,
-        label = ""
-    )
+	val bgColor by animateColorAsState(
+		animationSpec = tween(500),
+		targetValue = if (pager.currentPage % 2 == 0)
+			Color(0xFFE2E7FF)
+		else
+			Color(0xFF090D1F),
+		label = ""
+	)
+	val textColor by animateColorAsState(
+		animationSpec = tween(500),
+		targetValue = if (pager.currentPage % 2 == 0)
+			Color.Black
+		else
+			Color.White,
+		label = ""
+	)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(bgColor),
-        contentAlignment = Alignment.Center
-    ) {
-        HorizontalPager(
-            modifier = Modifier.fillMaxSize(),
-            state = pager,
-            contentPadding = PaddingValues(75.dp),
-            key = { places[it].resId },
-        ) { index ->
+	Box(
+		modifier = Modifier
+			.fillMaxSize()
+			.background(bgColor),
+		contentAlignment = Alignment.Center
+	) {
+		HorizontalPager(
+			modifier = Modifier.fillMaxSize(),
+			state = pager,
+			contentPadding = PaddingValues(75.dp),
+			key = { places[it].resId },
+		) { index ->
 
-            // animations
-            val imgScale by animateFloatAsState(
-                animationSpec = tween(500),
-                targetValue = if (index == pager.currentPage) 1.3f else 1f,
-                label = ""
-            )
-            val reflectionAlpha by animateFloatAsState(
-                animationSpec = tween(500),
-                targetValue = if (index == pager.currentPage) 0.8f else 0.2f,
-                label = ""
-            )
-            val imgOffset by animateDpAsState(
-                animationSpec = tween(500),
-                targetValue = if (index == pager.currentPage) 80.dp else 4.dp,
-                label = ""
-            )
-            val letterSpace by animateFloatAsState(
-                animationSpec = tween(600),
-                targetValue = if (index == pager.currentPage) 8f else 0f,
-                label = ""
-            )
+			// animations
+			val imgScale by animateFloatAsState(
+				animationSpec = tween(500),
+				targetValue = if (index == pager.currentPage) 1.3f else 1f,
+				label = ""
+			)
+			val reflectionAlpha by animateFloatAsState(
+				animationSpec = tween(500),
+				targetValue = if (index == pager.currentPage) 0.8f else 0.2f,
+				label = ""
+			)
+			val imgOffset by animateDpAsState(
+				animationSpec = tween(500),
+				targetValue = if (index == pager.currentPage) 80.dp else 4.dp,
+				label = ""
+			)
+			val letterSpace by animateFloatAsState(
+				animationSpec = tween(600),
+				targetValue = if (index == pager.currentPage) 8f else 0f,
+				label = ""
+			)
 
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                // Text
-                Text(
-                    text = places[index].name,
-                    fontSize = 30.sp,
-                    color = textColor,
-                    letterSpacing = TextUnit(letterSpace, TextUnitType.Sp)
-                )
-                Spacer(modifier = Modifier.height(60.dp))
+			Column(
+				modifier = Modifier.fillMaxSize(),
+				horizontalAlignment = Alignment.CenterHorizontally,
+				verticalArrangement = Arrangement.Center
+			) {
+				// Text
+				Text(
+					text = places[index].name,
+					fontSize = 30.sp,
+					color = textColor,
+					letterSpacing = TextUnit(letterSpace, TextUnitType.Sp)
+				)
+				Spacer(modifier = Modifier.height(60.dp))
 
-                // Original image
-                Image(
-                    modifier = Modifier
-                        .height(250.dp)
-                        .aspectRatio(3 / 4f)
-                        .scale(imgScale)
-                        .clip(RoundedCornerShape(8.dp)),
-                    painter = painterResource(id = places[index].resId),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop
-                )
+				// Original image
+				Image(
+					modifier = Modifier
+						.height(250.dp)
+						.aspectRatio(3 / 4f)
+						.scale(imgScale)
+						.clip(RoundedCornerShape(8.dp)),
+					painter = painterResource(id = places[index].resId),
+					contentDescription = null,
+					contentScale = ContentScale.Crop
+				)
 
-                // Reflected image (flip Y-axis + gradient blend)
-                Image(
-                    painter = painterResource(id = places[index].resId),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .height(250.dp)
-                        .aspectRatio(3 / 4f)
-                        .offset(y = imgOffset)
-                        .scale(imgScale, -imgScale)
-                        .clip(RoundedCornerShape(8.dp))
-                        .graphicsLayer {
-                            alpha = reflectionAlpha
-                        }
-                        .drawWithContent {
-                            val overlayColors =
-                                listOf(
-                                    Color.Transparent,
-                                    Color.Transparent,
-                                    Color.Transparent,
-                                    Color.White
-                                )
-                            drawContent()
-                            drawRect(
-                                brush = Brush.verticalGradient(overlayColors),
-                                blendMode = BlendMode.DstIn
-                            )
-                        }
-                )
-            }
-        }
+				// Reflected image (flip Y-axis + gradient blend)
+				Image(
+					painter = painterResource(id = places[index].resId),
+					contentDescription = null,
+					contentScale = ContentScale.Crop,
+					modifier = Modifier
+						.height(250.dp)
+						.aspectRatio(3 / 4f)
+						.offset(y = imgOffset)
+						.scale(imgScale, -imgScale)
+						.clip(RoundedCornerShape(8.dp))
+						.graphicsLayer {
+							alpha = reflectionAlpha
+						}
+						.drawWithContent {
+							val overlayColors =
+								listOf(
+									Color.Transparent,
+									Color.Transparent,
+									Color.Transparent,
+									Color.White
+								)
+							drawContent()
+							drawRect(
+								brush = Brush.verticalGradient(overlayColors),
+								blendMode = BlendMode.DstIn
+							)
+						}
+				)
+			}
+		}
 
-    }
+	}
 }
 
 @Preview
 @Composable
 private fun ReflectionAnimationPreview() {
-    ReflectionAnimation()
+	ReflectionAnimation()
 }

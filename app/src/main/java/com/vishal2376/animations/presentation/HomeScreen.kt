@@ -23,54 +23,55 @@ import com.vishal2376.animations.ui.theme.darkBlue
 import com.vishal2376.animations.ui.theme.lightBlue
 
 val animationList = listOf(
-    "Flip Card",
-    "Card Slide",
-    "Card Reflection",
-    "Sweep Line Effect"
+	"Flip Card",
+	"Card Slide",
+	"Card Reflection",
+	"Sweep Line Effect",
+	"Carousel Slider"
 )
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(darkBlue)
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Text(
-            text = "30 Animations Challenge",
-            color = Color.White,
-            style = MaterialTheme.typography.titleLarge
-        )
+	Column(
+		Modifier
+			.fillMaxSize()
+			.background(darkBlue)
+			.padding(24.dp),
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.spacedBy(16.dp)
+	) {
+		Text(
+			text = "30 Animations Challenge",
+			color = Color.White,
+			style = MaterialTheme.typography.titleLarge
+		)
 
-        animationList.forEachIndexed { index, title ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .clickable {
-                        navController.navigate("day${index + 1}")
-                    }
-                    .background(lightBlue)
-                    .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
+		animationList.forEachIndexed { index, title ->
+			Row(
+				modifier = Modifier
+					.fillMaxWidth()
+					.clip(RoundedCornerShape(16.dp))
+					.clickable {
+						navController.navigate("day${index + 1}")
+					}
+					.background(lightBlue)
+					.padding(16.dp),
+				verticalAlignment = Alignment.CenterVertically,
+				horizontalArrangement = Arrangement.spacedBy(8.dp)
+			) {
 
-                Text(
-                    text = "Day ${index + 1}",
-                    color = accentColor,
-                    style = MaterialTheme.typography.titleMedium
-                )
+				Text(
+					text = "Day ${index + 1}",
+					color = accentColor,
+					style = MaterialTheme.typography.titleMedium
+				)
 
-                Text(
-                    text = title,
-                    color = Color.White,
-                    style = MaterialTheme.typography.titleSmall
-                )
-            }
-        }
-    }
+				Text(
+					text = title,
+					color = Color.White,
+					style = MaterialTheme.typography.titleSmall
+				)
+			}
+		}
+	}
 }

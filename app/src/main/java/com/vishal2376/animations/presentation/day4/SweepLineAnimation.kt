@@ -38,107 +38,107 @@ import com.vishal2376.animations.R
 
 @Composable
 fun SweepLineAnimation() {
-    val bgColor = Color(0xFF060D1F)
-    val textColor = Color(0xFF7CBBFF)
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(bgColor),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround
-    ) {
-        Text(text = "Your Favourite Cars", fontSize = 25.sp, color = textColor)
-        SweepGradientImage(imgResId = R.drawable.megatron)
-        SweepGradientImage(imgResId = R.drawable.bmw, maxImgRotation = 30f)
-        SweepGradientImage(imgResId = R.drawable.bob_fastest_car)
-    }
+	val bgColor = Color(0xFF060D1F)
+	val textColor = Color(0xFF7CBBFF)
+	Column(
+		Modifier
+			.fillMaxSize()
+			.background(bgColor),
+		horizontalAlignment = Alignment.CenterHorizontally,
+		verticalArrangement = Arrangement.SpaceAround
+	) {
+		Text(text = "Your Favourite Cars", fontSize = 25.sp, color = textColor)
+		SweepGradientImage(imgResId = R.drawable.megatron)
+		SweepGradientImage(imgResId = R.drawable.bmw, maxImgRotation = 30f)
+		SweepGradientImage(imgResId = R.drawable.bob_fastest_car)
+	}
 }
 
 
 @Composable
 fun SweepGradientImage(
-    imgResId: Int,
-    maxImgSize: Dp = 250.dp,
-    maxImgRotation: Float = -10f
+	imgResId: Int,
+	maxImgSize: Dp = 250.dp,
+	maxImgRotation: Float = -10f
 ) {
 
-    var animationPlayed by remember { mutableStateOf(false) }
+	var animationPlayed by remember { mutableStateOf(false) }
 
-    val lineOffset by animateFloatAsState(
-        targetValue = if (animationPlayed) 1f else -1.0f,
-        animationSpec = tween(500),
-        label = "",
-    )
+	val lineOffset by animateFloatAsState(
+		targetValue = if (animationPlayed) 1f else -1.0f,
+		animationSpec = tween(500),
+		label = "",
+	)
 
-    val imgAlpha by animateFloatAsState(
-        targetValue = if (animationPlayed) 1f else 0.5f,
-        animationSpec = tween(300),
-        label = "",
-    )
+	val imgAlpha by animateFloatAsState(
+		targetValue = if (animationPlayed) 1f else 0.5f,
+		animationSpec = tween(300),
+		label = "",
+	)
 
-    val imgSize by animateDpAsState(
-        targetValue = if (animationPlayed) maxImgSize else maxImgSize - 100.dp,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
-        ), label = ""
-    )
+	val imgSize by animateDpAsState(
+		targetValue = if (animationPlayed) maxImgSize else maxImgSize - 100.dp,
+		animationSpec = spring(
+			dampingRatio = Spring.DampingRatioMediumBouncy,
+			stiffness = Spring.StiffnessLow
+		), label = ""
+	)
 
-    val imgRotation by animateFloatAsState(
-        targetValue = if (animationPlayed) maxImgRotation - 20f else maxImgRotation,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
-        ), label = ""
-    )
+	val imgRotation by animateFloatAsState(
+		targetValue = if (animationPlayed) maxImgRotation - 20f else maxImgRotation,
+		animationSpec = spring(
+			dampingRatio = Spring.DampingRatioMediumBouncy,
+			stiffness = Spring.StiffnessLow
+		), label = ""
+	)
 
-    Box(
-        modifier = Modifier
-            .size(imgSize)
-            .graphicsLayer { rotationZ = imgRotation }
-            .clip(RoundedCornerShape(16.dp))
-            .clickable { animationPlayed = !animationPlayed }
-    ) {
-        Image(
-            painter = painterResource(id = imgResId),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .drawWithCache {
-                    val lineWidth = 200
+	Box(
+		modifier = Modifier
+			.size(imgSize)
+			.graphicsLayer { rotationZ = imgRotation }
+			.clip(RoundedCornerShape(16.dp))
+			.clickable { animationPlayed = !animationPlayed }
+	) {
+		Image(
+			painter = painterResource(id = imgResId),
+			contentDescription = null,
+			contentScale = ContentScale.Crop,
+			modifier = Modifier
+				.drawWithCache {
+					val lineWidth = 200
 
-                    val startOffset = Offset(size.width * lineOffset, size.height * lineOffset)
-                    val endOffset =
-                        Offset(startOffset.x.plus(lineWidth), startOffset.y.plus(lineWidth))
+					val startOffset = Offset(size.width * lineOffset, size.height * lineOffset)
+					val endOffset =
+						Offset(startOffset.x.plus(lineWidth), startOffset.y.plus(lineWidth))
 
-                    val gradient = Brush.linearGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.White.copy(0.9f),
-                            Color.Transparent
-                        ),
-                        start = startOffset,
-                        end = endOffset
-                    )
+					val gradient = Brush.linearGradient(
+						colors = listOf(
+							Color.Transparent,
+							Color.White.copy(0.9f),
+							Color.Transparent
+						),
+						start = startOffset,
+						end = endOffset
+					)
 
-                    onDrawWithContent {
-                        drawContent()
-                        drawRect(
-                            gradient,
-                            topLeft = Offset.Zero,
-                            size = size
-                        )
-                    }
-                }
-                .graphicsLayer {
-                    alpha = imgAlpha
-                }
-        )
-    }
+					onDrawWithContent {
+						drawContent()
+						drawRect(
+							gradient,
+							topLeft = Offset.Zero,
+							size = size
+						)
+					}
+				}
+				.graphicsLayer {
+					alpha = imgAlpha
+				}
+		)
+	}
 }
 
 @Preview
 @Composable
 private fun SweepLineAnimationPreview() {
-    SweepLineAnimation()
+	SweepLineAnimation()
 }
