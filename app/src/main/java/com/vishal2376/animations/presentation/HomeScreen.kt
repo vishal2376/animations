@@ -27,7 +27,8 @@ val animationList = listOf(
 	"Card Slide",
 	"Card Reflection",
 	"Sweep Line Effect",
-	"Circular Reveal"
+	"Circular Reveal",
+	"List Animation"
 )
 
 @Composable
