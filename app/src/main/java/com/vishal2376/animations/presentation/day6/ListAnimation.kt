@@ -1,6 +1,7 @@
 package com.vishal2376.animations.presentation.day6
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -62,7 +63,7 @@ fun ListAnimation() {
 
 		Spacer(modifier = Modifier.height(16.dp))
 
-		LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+		LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
 			items(contactList) { contact ->
 				ContactItem(contact = contact)
 			}
@@ -74,11 +75,17 @@ fun ListAnimation() {
 fun ContactItem(contact: Contact) {
 	val (textColor, backgroundColor) = generateContrastingColors()
 
-	var isVisible by remember { mutableStateOf(false) }
+	var isVisible by remember { mutableStateOf(false ) }
 
 	LaunchedEffect(Unit) {
 		isVisible = true
 	}
+
+	val bgColor by animateColorAsState(
+		targetValue = if (!isVisible)
+			backgroundColor else Color(0xFF202020), label = ""
+		, animationSpec = tween(600)
+	)
 
 	AnimatedVisibility(
 		visible = isVisible,
@@ -96,8 +103,8 @@ fun ContactItem(contact: Contact) {
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
-				.background(Color(0xFF202020), RoundedCornerShape(16.dp))
-				.padding(16.dp),
+				.background(bgColor, RoundedCornerShape(16.dp))
+				.padding(12.dp),
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Box(
@@ -119,11 +126,11 @@ fun ContactItem(contact: Contact) {
 				Text(
 					text = contact.name,
 					color = Color.White,
-					fontSize = 20.sp
+					fontSize = 18.sp
 				)
 				Text(
 					text = contact.number,
-					fontSize = 16.sp,
+					fontSize = 14.sp,
 					color = Color.Gray
 				)
 			}
