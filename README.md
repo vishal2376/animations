@@ -43,3 +43,10 @@ https://github.com/vishal2376/animations/assets/38159691/edafbeec-9cdf-49c9-a2eb
 
 https://github.com/vishal2376/animations/assets/38159691/09f70b18-133d-4b7f-b74b-071f603d844b
 
+
+### Day 7
+
+https://github.com/vishal2376/animations/assets/38159691/1c35fe31-e635-4493-9e46-a14dcea97194
+
+
+
