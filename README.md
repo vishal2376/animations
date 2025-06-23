@@ -1,7 +1,11 @@
 <div align="center">
+
+# ⚠️ Checkout animation library (WIP) : [Belleza](https://github.com/vishal2376/belleza)
+
+<br>
   
 ### Follow for more
-<a href="https://twitter.com/vishal2376"><img src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" /></a>
+<a href="https://twitter.com/vishal2376"><img src="https://img.shields.io/badge/twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" /></a> 
 
 <br>
 
